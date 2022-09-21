@@ -1,0 +1,16 @@
+def solution(s):
+    out = list(s) # convert string to list to insert spaces
+    spacesAdded = 0 # track how many spaces have been added to the list to keep the string and list indexes in sync
+    for i, letter in enumerate(s): # iterate for each letter in string while tracking the index
+        if letter.isupper(): # check if the letter is upper case
+            out.insert(i+spacesAdded," ") # insert a space before the letter in the list
+            spacesAdded += 1 
+    return "".join(out) # join the list of characters into a string
+'''
+Complete the solution so that the function will break up camel casing, using a space between words.
+
+Example
+"camelCasing"  =>  "camel Casing"
+"identifier"   =>  "identifier"
+""             =>  ""
+'''
