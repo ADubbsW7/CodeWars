@@ -1,0 +1,45 @@
+def valid_braces(string):
+    left = ['(','{','[']
+    stack = [] # stack tracks open brackets that are ready to be paired
+    for i,c in enumerate(string):
+        if c in left: # if character is an opening brace
+            stack.append(c) # add it to the stack
+        elif not stack: # if the stack empty
+            return False # since there won't be a match
+        else:            
+            match c: # switch case for the character to check if the top of the stack matches the character
+                case ")": 
+                    if "(" == stack[-1]:
+                        stack.remove("(")
+                    else:
+                         return False
+                case "}":
+                    if "{" == stack[-1]:
+                        stack.remove("{")
+                    else:
+                         return False
+                case "]":
+                    if "[" == stack[-1]:
+                        stack.remove("[")
+                    else:
+                         return False
+    if not stack: # if after the entire string there are no unmatch braces (aka stack is empty)
+        return True
+    return False
+'''
+Write a function that takes a string of braces, and determines if the order of the braces is valid. It should return true if the string is valid, and false if it's invalid.
+
+This Kata is similar to the Valid Parentheses Kata, but introduces new characters: brackets [], and curly braces {}. Thanks to @arnedag for the idea!
+
+All input strings will be nonempty, and will only consist of parentheses, brackets and curly braces: ()[]{}.
+
+What is considered Valid?
+A string of braces is considered valid if all braces are matched with the correct brace.
+
+Examples
+"(){}[]"   =>  True
+"([{}])"   =>  True
+"(}"       =>  False
+"[(])"     =>  False
+"[({})](]" =>  False
+'''

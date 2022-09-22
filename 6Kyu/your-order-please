@@ -1,0 +1,26 @@
+import re
+
+def order(sentence):
+    if sentence == "":
+        return ""
+    numOrder = [] # new list that will store the numbers that are in each word in the order they appear
+    out = sentence.split(" ")
+    for word in sentence.split(" "): 
+        # use regex to find the number in each word, then store it in a list
+        numOrder.append(int(re.compile('\d').search(word).group(0))) 
+    # zip (pair) the sentence list and number list to use the list of numbers as the key for sorting the sentence list
+    # then use list comprehension to extract the words from the output (list of tuples)
+    # then join the list of words into a string
+    return " ".join([x for _,x in sorted(zip(numOrder,out))]) 
+'''
+Your task is to sort a given string. Each word in the string will contain a single number. This number is the position the word should have in the result.
+
+Note: Numbers can be from 1 to 9. So 1 will be the first word (not 0).
+
+If the input string is empty, return an empty string. The words in the input String will only contain valid consecutive numbers.
+
+Examples
+"is2 Thi1s T4est 3a"  -->  "Thi1s is2 3a T4est"
+"4of Fo1r pe6ople g3ood th5e the2"  -->  "Fo1r the2 g3ood 4of th5e pe6ople"
+""  -->  ""
+'''
